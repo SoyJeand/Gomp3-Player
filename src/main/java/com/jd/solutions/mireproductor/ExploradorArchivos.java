@@ -13,6 +13,8 @@ public class ExploradorArchivos {
     private static Stage escenario;
     private static FileChooser explorador;
 
+
+
     static {
         escenario = new Stage();
         explorador = new FileChooser();
@@ -27,7 +29,9 @@ public class ExploradorArchivos {
         try {
             File archivo = explorador.showOpenDialog(escenario);
             Media archivoSonido = new Media(archivo.toURI().toString());
-            new Cancion(archivoSonido);
+            String archivoName = archivo.getName();
+            new Cancion(archivoSonido, archivoName);
+            System.out.println(archivo.getName());
         } catch(Exception e) {
             System.out.println("No has seleccionado nada");
         }

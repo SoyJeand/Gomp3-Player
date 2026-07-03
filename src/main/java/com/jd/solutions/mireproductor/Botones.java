@@ -54,10 +54,10 @@ public class Botones extends HBox {
     }
 
     private void estiloBoton(Button boton, String nombre){
-        boton.setMinHeight(80);
-        boton.setMinWidth(80);
+        boton.setMinHeight(60);
+        boton.setMinWidth(60);
 
-        setMargin(boton, new Insets(20));
+        setMargin(boton, new Insets(20, 10, 20, 10));
 
         var urlRecurso = getClass().getResource("/imagenes/" + nombre + ".png");
 

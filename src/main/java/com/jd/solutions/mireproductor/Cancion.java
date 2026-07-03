@@ -10,7 +10,7 @@ public class Cancion {
     private static MediaPlayer reproductor;
     private String titulo, album, artista;
 
-    public Cancion(Media archivo) {
+    public Cancion(Media archivo, String archivoName) {
         this.archivo = archivo;
         reproductor = new MediaPlayer(archivo);
 
@@ -23,11 +23,13 @@ public class Cancion {
 
             Image caratula = (Image) archivo.getMetadata().get("image");
 
-            InfoCancion.actualizarInformacion(titulo, artista, album, caratula);
+            InfoCancion.actualizarInformacion(titulo, artista, album, caratula, archivoName);
 
         });
         reproductor.setOnEndOfMedia(() -> reproductor.stop());
     }
+
+
 
     public static void play() {
         if(archivo != null) {
