@@ -11,22 +11,34 @@ public class Cancion {
     private String titulo, album, artista;
 
     public Cancion(Media archivo, String archivoName) {
-        this.archivo = archivo;
-        reproductor = new MediaPlayer(archivo);
+        if (reproductor != null) {
+            reproductor.stop();
+            reproductor.dispose();
+            System.out.println("Canción anterior detenida y liberada.");
+        }
+        try {
+            this.archivo = archivo;
+            reproductor = new MediaPlayer(archivo);
 
-        BarraTiempo.setCancion(reproductor);
+            BarraTiempo.setCancion(reproductor);
 
-        reproductor.setOnReady(() ->{
-            titulo = (String) archivo.getMetadata().get("title");
-            album = (String) archivo.getMetadata().get("album");
-            artista = (String) archivo.getMetadata().get("artist");
+            reproductor.setOnReady(() ->{
+                titulo = (String) archivo.getMetadata().get("title");
+                album = (String) archivo.getMetadata().get("album");
+                artista = (String) archivo.getMetadata().get("artist");
 
-            Image caratula = (Image) archivo.getMetadata().get("image");
+                Image caratula = (Image) archivo.getMetadata().get("image");
 
-            InfoCancion.actualizarInformacion(titulo, artista, album, caratula, archivoName);
+                InfoCancion.actualizarInformacion(titulo, artista, album, caratula, archivoName);
 
-        });
-        reproductor.setOnEndOfMedia(() -> reproductor.stop());
+            });
+            reproductor.setOnEndOfMedia(() -> reproductor.stop());
+
+        } catch (Exception e) {
+            System.err.println("Error al carhar el archivo de audio:" + e.getMessage());
+        }
+
+
     }
 
 
