@@ -10,6 +10,7 @@ public class Cancion {
     private static MediaPlayer reproductor;
     private String titulo, album, artista;
 
+
     public Cancion(Media archivo, String archivoName) {
         if (reproductor != null) {
             reproductor.stop();
@@ -19,6 +20,7 @@ public class Cancion {
         try {
             this.archivo = archivo;
             reproductor = new MediaPlayer(archivo);
+            reproductor.setVolume(0.5);
 
             BarraTiempo.setCancion(reproductor);
 

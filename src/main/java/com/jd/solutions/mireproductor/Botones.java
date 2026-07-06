@@ -49,6 +49,7 @@ public class Botones extends HBox {
 
     }
 
+
     private void montarBotones(){
         getChildren().addAll(stop,play,pause,etVolumen, controladorVolumen);
     }
