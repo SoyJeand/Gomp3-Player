@@ -22,6 +22,7 @@ public class BarraTiempo extends VBox {
         barra.setMin(0);
         barra.setMax(100);
         barra.setValue(0);
+        VBox.setMargin(barra, new Insets(0,10,0,10));
 
         this.setAlignment(Pos.CENTER_RIGHT);
         getChildren().addAll(etTiempo, barra);
